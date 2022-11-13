@@ -4,12 +4,17 @@ package ucu.edu.ua.demo.flower;
 import lombok.Getter;
 import lombok.Setter;
 
-
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.Table;
 
 @Setter
+@Entity
+@Table
 public class Flower {
-    @Getter
-    private double sepalLength;
+    @Id @GeneratedValue @Getter @Setter
+    private int id;
     private FlowerColor color;
     @Getter
     private double price;

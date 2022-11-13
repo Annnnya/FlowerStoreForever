@@ -1,16 +1,25 @@
 package ucu.edu.ua.demo.flower;
 
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @RequestMapping
 @RestController
 public class FlowerController {
-    @GetMapping
+    private final FlowerService flowerService;
+    @Autowired
+    public FlowerController(FlowerService flowerService) {
+        this.flowerService = flowerService;
+    }
+
+    @GetMapping("/flowers")
     public List<Flower> getFlowers() {
-        return List.of(new Chamomile(15), new Tulip(10), new Rose(20));
+        return flowerService.getFlowers();
+    }
+    @PostMapping("/add_flower")
+    public void addFlower(@RequestBody Flower flower) {
+        flowerService.addFlower(flower);
     }
 }

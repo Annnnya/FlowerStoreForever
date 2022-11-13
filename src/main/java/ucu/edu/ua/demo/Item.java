@@ -17,4 +17,5 @@ public class Item {
         this.price = flower.getPrice();
         this.characteristics = flower.detDescription();
     }
+
 }
